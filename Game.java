@@ -1,3 +1,4 @@
+
 /*
  * Author: Diego Ruiz
  * Date: 2/3/2025
@@ -14,21 +15,21 @@ public class Game extends JFrame {
     private Controller controller;
 
     public Game() {
-    model = new Model(); // Create Model instance
-    controller = new Controller(model); // Pass Model to Controller
-    view = new View(controller, model); // Pass Model to View
+        model = new Model(); // Create Model instance
+        controller = new Controller(model); // Pass ONLY Model to Controller
+        view = new View(model); // Pass Model to View
+        controller.setView(view); // Set View in Controller
 
-    this.setTitle("Turtle Wars!"); // Change window title
-    this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    this.setSize(800, 600);
-    this.add(view);
-    this.setVisible(true);
+        this.setTitle("Turtle Wars!"); // Change window title
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(800, 600);
+        this.add(view);
+        this.setVisible(true);
 
-    this.addKeyListener(controller); // Attach KeyListener
-    this.setFocusable(true); // Ensure focus on the window
-    this.requestFocus();
-}
-
+        this.addKeyListener(controller); // Attach KeyListener
+        this.setFocusable(true); // Ensure focus on the window
+        this.requestFocus();
+    }
 
     public void run() {
         while (true) {

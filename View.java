@@ -17,19 +17,13 @@ import javax.swing.JButton;
 
 public class View extends JPanel {
     private JButton b1;
-    private Controller controller;
     private Model model;
     private BufferedImage turtle_image;
 
-    public View(Controller c, Model m) {
-        this.controller = c;
+    public View(Model m) {
         this.model = m;
-        c.setView(this);
-
-        this.addMouseListener(controller); // Attach MouseListener to JPanel
 
         b1 = new JButton("Don't push me!");
-        b1.addActionListener(c);
         this.add(b1);
 
         try {
@@ -38,6 +32,11 @@ public class View extends JPanel {
             e.printStackTrace();
             System.exit(1);
         }
+    }
+
+    // Return the button for the controller
+    public JButton getButton() {
+        return b1;
     }
 
     void removeButton() {

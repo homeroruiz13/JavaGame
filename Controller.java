@@ -1,3 +1,4 @@
+
 /*
  * Author: Diego Ruiz
  * Date: 2/3/2025
@@ -15,7 +16,7 @@ import java.awt.event.KeyEvent;
 public class Controller implements ActionListener, MouseListener, KeyListener {
     private Model model;
     private View view;
-    
+
     private boolean keyLeft;
     private boolean keyRight;
     private boolean keyUp;
@@ -23,10 +24,14 @@ public class Controller implements ActionListener, MouseListener, KeyListener {
 
     public Controller(Model m) {
         this.model = m;
+        this.view = null;
     }
 
     public void setView(View v) {
         this.view = v;
+
+        v.addMouseListener(this);
+        v.getButton().addActionListener(this);
     }
 
     // Handles button click event (removes button)
@@ -42,22 +47,37 @@ public class Controller implements ActionListener, MouseListener, KeyListener {
     }
 
     @Override
-    public void mouseReleased(MouseEvent e) { }
+    public void mouseReleased(MouseEvent e) {
+    }
+
     @Override
-    public void mouseEntered(MouseEvent e) { }
+    public void mouseEntered(MouseEvent e) {
+    }
+
     @Override
-    public void mouseExited(MouseEvent e) { }
+    public void mouseExited(MouseEvent e) {
+    }
+
     @Override
-    public void mouseClicked(MouseEvent e) { }
+    public void mouseClicked(MouseEvent e) {
+    }
 
     // Handles key press events
     @Override
     public void keyPressed(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_RIGHT: keyRight = true; break;
-            case KeyEvent.VK_LEFT: keyLeft = true; break;
-            case KeyEvent.VK_UP: keyUp = true; break;
-            case KeyEvent.VK_DOWN: keyDown = true; break;
+            case KeyEvent.VK_RIGHT:
+                keyRight = true;
+                break;
+            case KeyEvent.VK_LEFT:
+                keyLeft = true;
+                break;
+            case KeyEvent.VK_UP:
+                keyUp = true;
+                break;
+            case KeyEvent.VK_DOWN:
+                keyDown = true;
+                break;
         }
     }
 
@@ -65,11 +85,21 @@ public class Controller implements ActionListener, MouseListener, KeyListener {
     @Override
     public void keyReleased(KeyEvent e) {
         switch (e.getKeyCode()) {
-            case KeyEvent.VK_RIGHT: keyRight = false; break;
-            case KeyEvent.VK_LEFT: keyLeft = false; break;
-            case KeyEvent.VK_UP: keyUp = false; break;
-            case KeyEvent.VK_DOWN: keyDown = false; break;
-            case KeyEvent.VK_ESCAPE: System.exit(0); break;
+            case KeyEvent.VK_RIGHT:
+                keyRight = false;
+                break;
+            case KeyEvent.VK_LEFT:
+                keyLeft = false;
+                break;
+            case KeyEvent.VK_UP:
+                keyUp = false;
+                break;
+            case KeyEvent.VK_DOWN:
+                keyDown = false;
+                break;
+            case KeyEvent.VK_ESCAPE:
+                System.exit(0);
+                break;
         }
 
         // Allow 'q' to exit the game
@@ -80,13 +110,18 @@ public class Controller implements ActionListener, MouseListener, KeyListener {
     }
 
     @Override
-    public void keyTyped(KeyEvent e) { }
+    public void keyTyped(KeyEvent e) {
+    }
 
     // Handles turtle movement based on key states
     public void update() {
-        if (keyRight) model.moveRight();
-        if (keyLeft) model.moveLeft();
-        if (keyDown) model.moveDown();
-        if (keyUp) model.moveUp();
+        if (keyRight)
+            model.moveRight();
+        if (keyLeft)
+            model.moveLeft();
+        if (keyDown)
+            model.moveDown();
+        if (keyUp)
+            model.moveUp();
     }
 }
